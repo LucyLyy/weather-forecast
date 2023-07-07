@@ -1,4 +1,4 @@
-package com.example.broadcast.Bean;
+package com.example.forcast.Bean;
 
 
 import com.google.gson.annotations.SerializedName;

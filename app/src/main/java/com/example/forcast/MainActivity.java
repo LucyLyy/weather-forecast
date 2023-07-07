@@ -1,4 +1,4 @@
-package com.example.broadcast;
+package com.example.forcast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +20,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.broadcast.Bean.WeatherBean;
-import com.example.broadcast.Bean.futureBean;
-import com.example.broadcast.adapter.FutureWeatherAdapt;
-import com.example.broadcast.util.NetUtil;
-import com.example.broadcast.util.ToastUtil;
+import com.example.forcast.Bean.WeatherBean;
+import com.example.forcast.Bean.futureBean;
+import com.example.forcast.adapter.FutureWeatherAdapt;
+import com.example.forcast.util.NetUtil;
+import com.example.forcast.util.ToastUtil;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -35,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     String  cityid=null;//储存输入的城市ID
     int count = 0; //储存次数
     int flag=0;//是否有的标志(默认没有)
+//    private ArrayAdapter<String> mSpAdapter;
     public static MainActivity mainActivity;
     public static EditText editCityId;
     private TextView tvWeather, tvTem, tvUpdateTime, tvHumidity, tvpm25, tvAir, tvprovince;
@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
         tvWeather = findViewById(R.id.tv_weather);
         tvAir = findViewById(R.id.tv_air);
         tvTem = findViewById(R.id.tv_tem);

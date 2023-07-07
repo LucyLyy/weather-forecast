@@ -1,9 +1,8 @@
-package com.example.broadcast.util;
+package com.example.forcast.util;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.broadcast.MainActivity;
+import com.example.forcast.MainActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;

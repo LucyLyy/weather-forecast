@@ -1,4 +1,4 @@
-package com.example.broadcast.adapter;
+package com.example.forcast.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.broadcast.Bean.futureBean;
-import com.example.broadcast.R;
+import com.example.forcast.Bean.futureBean;
+import com.example.forcast.R;
 
 import java.util.List;
 
