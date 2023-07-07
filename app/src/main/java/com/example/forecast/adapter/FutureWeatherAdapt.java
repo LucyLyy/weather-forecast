@@ -1,4 +1,4 @@
-package com.example.forcast.adapter;
+package com.example.forecast.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.forcast.Bean.futureBean;
-import com.example.forcast.R;
+import com.example.forecast.Bean.futureBean;
+import com.example.forecast.R;
 
 import java.util.List;
 

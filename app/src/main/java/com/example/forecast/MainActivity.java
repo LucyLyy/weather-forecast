@@ -1,4 +1,4 @@
-package com.example.forcast;
+package com.example.forecast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +21,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.forcast.Bean.WeatherBean;
-import com.example.forcast.Bean.futureBean;
-import com.example.forcast.adapter.FutureWeatherAdapt;
-import com.example.forcast.util.NetUtil;
-import com.example.forcast.util.ToastUtil;
+import com.example.forecast.Bean.WeatherBean;
+import com.example.forecast.Bean.futureBean;
+import com.example.forecast.adapter.FutureWeatherAdapt;
+import com.example.forecast.util.NetUtil;
+import com.example.forecast.util.ToastUtil;
 import com.google.gson.Gson;
 
 import java.util.List;

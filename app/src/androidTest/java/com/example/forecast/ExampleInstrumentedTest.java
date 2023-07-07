@@ -1,4 +1,4 @@
-package com.example.forcast;
+package com.example.forecast;
 
 import android.content.Context;
 

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.forcast'
+    namespace 'com.example.forecast'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.forcast"
+        applicationId "com.example.forecast"
         minSdk 24
         targetSdk 33
         versionCode 1

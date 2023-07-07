@@ -1,8 +1,8 @@
-package com.example.forcast.util;
+package com.example.forecast.util;
 
 import android.util.Log;
 
-import com.example.forcast.MainActivity;
+import com.example.forecast.MainActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;

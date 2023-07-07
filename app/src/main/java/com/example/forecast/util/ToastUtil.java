@@ -1,4 +1,4 @@
-package com.example.forcast.util;
+package com.example.forecast.util;
 
 import android.content.Context;
 import android.os.Looper;
