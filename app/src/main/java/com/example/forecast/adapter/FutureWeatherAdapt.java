@@ -40,9 +40,9 @@ public class FutureWeatherAdapt extends RecyclerView.Adapter<FutureWeatherAdapt.
             holder.tvAir.setText("空气指数: "+dayBean.getAqi());
             holder.tvWeather.setText(dayBean.getType());
             holder.tvDay.setText("("+dayBean.getYmd()+dayBean.getWeek()+")");
-            holder.tvfx.setText("风向:"+dayBean.getFx());
+           // holder.tvfx.setText("风向:"+dayBean.getFx());
             holder.tvfl.setText("风力:"+dayBean.getFl());
-            holder.tvnotice.setText(dayBean.getNotice());
+           // holder.tvnotice.setText(dayBean.getNotice());
             holder.ivWeather.setImageResource(getImgResOfWeather(dayBean.getType()));
     }
 
@@ -52,7 +52,8 @@ public class FutureWeatherAdapt extends RecyclerView.Adapter<FutureWeatherAdapt.
     }
 
     class WeatherViewaHolder extends RecyclerView.ViewHolder {
-        TextView tvWeather,tvDay,tvfx,tvfl,tvAir,tvtemH,tvtemL,tvnotice;
+        TextView tvWeather,tvDay,tvAir,tvtemH,tvtemL,tvfl;
+//        TextView tvfx,tvnotice;
         ImageView ivWeather;
         public WeatherViewaHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,8 +63,8 @@ public class FutureWeatherAdapt extends RecyclerView.Adapter<FutureWeatherAdapt.
             tvDay=itemView.findViewById(R.id.tv_day);
             tvAir=itemView.findViewById(R.id.tv_air);
             tvfl=itemView.findViewById(R.id.tv_fl);
-            tvfx=itemView.findViewById(R.id.tv_fx);
-            tvnotice=itemView.findViewById(R.id.tv_notice);
+//            tvfx=itemView.findViewById(R.id.tv_fx);
+//            tvnotice=itemView.findViewById(R.id.tv_notice);
             ivWeather=itemView.findViewById(R.id.iv_weather);
         }
     }

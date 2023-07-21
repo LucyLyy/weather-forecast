@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-       <!-- <androidx.appcompat.widget.AppCompatSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/sp_city"
             android:layout_width="150dp"
             android:layout_height="48dp"
@@ -23,7 +23,7 @@
             android:overlapAnchor="false"
             android:popupBackground="@color/trans"
             android:spinnerMode="dropdown"
-            />-->
+            />
         <EditText
             android:id="@+id/editCityId"
             android:layout_width="match_parent"

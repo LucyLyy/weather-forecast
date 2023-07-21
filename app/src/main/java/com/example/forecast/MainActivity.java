@@ -1,12 +1,20 @@
 package com.example.forecast;
+import java.io.IOException;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import java.io.BufferedReader;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +25,8 @@ import android.util.Log;
 import android.view.View;
 
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +34,7 @@ import android.widget.TextView;
 import com.example.forecast.Bean.WeatherBean;
 import com.example.forecast.Bean.futureBean;
 import com.example.forecast.adapter.FutureWeatherAdapt;
+import com.example.forecast.util.CityUtils;
 import com.example.forecast.util.NetUtil;
 import com.example.forecast.util.ToastUtil;
 import com.google.gson.Gson;
@@ -34,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
     String  cityid=null;//储存输入的城市ID
     int count = 0; //储存次数
     int flag=0;//是否有的标志(默认没有)
-//    private ArrayAdapter<String> mSpAdapter;
+    private AppCompatSpinner mSpinner;
+    private ArrayAdapter<String> mSpAdapter;
+    private String[] mCities;
     public static MainActivity mainActivity;
     public static EditText editCityId;
     private TextView tvWeather, tvTem, tvUpdateTime, tvHumidity, tvpm25, tvAir, tvprovince;
@@ -91,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         tvUpdateTime.setText("更新时间:\t" + updatetime);
         tvHumidity.setText("湿度:\t" + shidu);
         ivWeather.setImageResource(getImgResOfWeather(today.getType()));
+
+
 
         futureWeather.remove(0);  //去掉今天的
         //未来天气的展示
@@ -219,6 +234,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mSpinner=findViewById(R.id.sp_city);
+        mCities=getResources().getStringArray(R.array.cities);
+        mSpAdapter = new ArrayAdapter<>(this,R.layout.sp_item_layout,mCities);
+        mSpinner.setAdapter(mSpAdapter);
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCity = mCities[position];
+                String cityid=getCityid(selectedCity);
+                getWeatherOfCityId(cityid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         tvWeather = findViewById(R.id.tv_weather);
         tvAir = findViewById(R.id.tv_air);
@@ -232,6 +264,37 @@ public class MainActivity extends AppCompatActivity {
         ivWeather = findViewById(R.id.iv_weather);
     }
 
+    private String getCityid(String cityname) {
+        Context context = MainActivity.this;
+        String cityId = "";
+        try {
+            // 读取JSON文件内容为字符串
+            String json = readJsonFromAssets(context, "new_city.json");
+            // 查找城市ID
+            cityId = CityUtils.findCityId(cityname, json);
+            if (cityId != null) {
+                System.out.println("城市ID为：" + cityId);
+            } else {
+                System.out.println("未找到匹配的城市名称");
+            }
+        } catch (IOException e) {
+            System.out.println("读取JSON文件失败：" + e.getMessage());
+//            e.printStackTrace();
+        }
+        return cityId;
+    }
+    private  String readJsonFromAssets(Context context, String fileName) throws IOException {
+        AssetManager assetManager = context.getAssets();
+        InputStream inputStream = assetManager.open(fileName);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+        bufferedReader.close();
+        return stringBuilder.toString();
+    }
     public void search(View view) {
          cityid = editCityId.getText().toString();
         //点击搜索后，收起软键盘
