@@ -70,5 +70,4 @@ public class FutureWeatherAdapt extends RecyclerView.Adapter<FutureWeatherAdapt.
         }
     }
 
-
 }

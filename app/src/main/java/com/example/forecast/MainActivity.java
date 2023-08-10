@@ -1,12 +1,15 @@
 package com.example.forecast;
+
 import java.io.IOException;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+
 import java.io.BufferedReader;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,9 +46,9 @@ import com.google.gson.Gson;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    String  cityid=null;//储存输入的城市ID
+    String cityid = null;//储存输入的城市ID
     int count = 0; //储存次数
-    int flag=0;//是否有的标志(默认没有)
+    int flag = 0;//是否有的标志(默认没有)
     private AppCompatSpinner mSpinner;
     private ArrayAdapter<String> mSpAdapter;
     private String[] mCities;
@@ -124,15 +127,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mSpinner=findViewById(R.id.sp_city);
-        mCities=getResources().getStringArray(R.array.cities);
-        mSpAdapter = new ArrayAdapter<>(this,R.layout.sp_item_layout,mCities);
+        mSpinner = findViewById(R.id.sp_city);
+        mCities = getResources().getStringArray(R.array.cities);
+        mSpAdapter = new ArrayAdapter<>(this, R.layout.sp_item_layout, mCities);
         mSpinner.setAdapter(mSpAdapter);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCity = mCities[position];
-                String cityid=getCityid(selectedCity);
+                String cityid = getCityid(selectedCity);
                 getWeatherOfCityId(cityid);
             }
 
@@ -173,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return cityId;
     }
-    private  String readJsonFromAssets(Context context, String fileName) throws IOException {
+
+    private String readJsonFromAssets(Context context, String fileName) throws IOException {
         AssetManager assetManager = context.getAssets();
         InputStream inputStream = assetManager.open(fileName);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -185,8 +189,9 @@ public class MainActivity extends AppCompatActivity {
         bufferedReader.close();
         return stringBuilder.toString();
     }
+
     public void search(View view) {
-         cityid = editCityId.getText().toString();
+        cityid = editCityId.getText().toString();
         //点击搜索后，收起软键盘
         InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (im != null) {
@@ -199,25 +204,27 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             for (int i = 1; i <= count; i++) {  //查找三次缓存
                 weatherStriing = sharedPreferences.getString("weatherBean" + i, null);
-                String weul="\"citykey\":"+"\""+cityid+"\"";
+                String weul = "\"citykey\":" + "\"" + cityid + "\"";
                 if (weatherStriing.contains(weul)) {
                     //开始解析本地数据
                     Gson gson = new Gson();
                     WeatherBean weatherBean = gson.fromJson(weatherStriing, WeatherBean.class);
                     Log.d("fan", "---本地解析后的天气---" + weatherBean.toString());
                     updateUiOfWeather(weatherBean);
-                    flag=1;//找到了
+                    flag = 1;//找到了
                     break;//找到就退出循环
-                }flag=0;//没找到
+                }
+                flag = 0;//没找到
             }
         }
-         if(flag==0){
+        if (flag == 0) {
             //在线查找
             getWeatherOfCityId(cityid);
         }
         editCityId.setText("");
     }
- //子线程
+
+    //子线程
     private void getWeatherOfCityId(String cityid) {
         new Thread(new Runnable() {
             @Override
@@ -234,10 +241,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refresh(View view) {
-        if(cityid!=null){
-            getWeatherOfCityId(cityid);} //重新请求在线数据
+        if (cityid != null) {
+            getWeatherOfCityId(cityid);
+        } //重新请求在线数据
         else
-            ToastUtil.toastLong(MainActivity.this,"目前还没有显示天气数据！");
+            ToastUtil.toastLong(MainActivity.this, "目前还没有显示天气数据！");
     }
 
 }

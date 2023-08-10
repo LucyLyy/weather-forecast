@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         tools:text="(2017-07-25星期日)"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_weather"
@@ -28,7 +28,7 @@
         tools:text="阴转多云"
         android:layout_marginTop="5dp"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tv_temH"
@@ -37,7 +37,7 @@
         android:layout_marginTop="5dp"
         tools:text="最高温度:30℃"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
     <TextView
         android:id="@+id/tv_temL"
         android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
         android:layout_marginTop="5dp"
         tools:text="最低温度:18℃"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
 <!--    <TextView
         android:id="@+id/tv_fx"
@@ -63,7 +63,7 @@
         android:layout_marginTop="5dp"
         tools:text="风力:3级"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tv_air"
@@ -73,7 +73,7 @@
         android:gravity="center"
         tools:text="空气指数:101"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 <!--    <TextView
         android:id="@+id/tv_notice"
         android:layout_width="wrap_content"
